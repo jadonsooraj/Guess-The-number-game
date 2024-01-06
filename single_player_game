@@ -1,0 +1,26 @@
+import random
+class GuessTheNumberGame:
+    def __init__(self, lower, upper):
+        self.lower=lower
+        self.upper=upper
+        self.target_number=random.randint(lower, upper)
+        self.attempts=0
+    def heuristic(self, guess):
+        if guess<self.target_number:
+            return "Try a higher number"
+        elif guess>self.target_number:
+            return "Try a lower number"
+        else:
+            return "You guessed it!"
+    def play(self):
+        print(f"Guess the number between {self.lower} and {self.upper}")
+        while True:
+            guess=int(input("Your guess:"))
+            self.attempts+=1
+            result=self.heuristic(guess)
+            print(result)
+            if guess==self.target_number:
+                print(f"You found the number in {self.attempts} attempts.")
+                break
+game = GuessTheNumberGame(1,100)
+game.play()
